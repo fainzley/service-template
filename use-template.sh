@@ -37,10 +37,12 @@ replaceInFile() {
   fi
 }
 
-replaceInFile "package-lock.json" "s/service-template/${name}/g" "Changed project name, repository URL, and homepage URL"
-replaceInFile "package.json" "s/service-template/${name}/g" "Changed project name, repository URL, and homepage URL"
+replaceInFile "package-lock.json" "s/service-template/${name}/g" "Changed project name"
+replaceInFile "package.json" "s/service-template/${name}/g" "Changed project name"
 replaceInFile "package.json" "s/A template for micro-services deployed to AWS with Pulumi/${desc}/g" "Changed project description"
-replaceInFile "package.json" "/use-template/d" "Remove init-template script"
+replaceInFile "Pulumi.yaml" "s/service-template/${name}/g" "Changed project name"
+replaceInFile "Pulumi.yaml" "s/A template for micro-services deployed to AWS with Pulumi/${desc}/g" "Changed project description"
+replaceInFile "package.json" "/use-template/d" "Removed init-template script"
 
 mv -f README.template.md README.md
 if [ $? -eq 0 ]; then
@@ -63,4 +65,6 @@ printf "${bgreen}${tick} ${bold}Removed the git remote.\n"
 printf "\n${bgreen}${asterisk} ${bold}All done. You can now add a new remote, commit and push like so:\n"
 printf "\n${bold}git remote add origin new-remote-url\n"
 printf "${bold}git add --all\n"
-printf "${bold}git push -u origin master\n\n"
+printf "${bold}git push -u origin main\n"
+
+printf "\n${bold}If you would like to remove all commit history, see this Stack Overflow answer: https://stackoverflow.com/a/26000395\n\n"
