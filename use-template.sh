@@ -39,6 +39,7 @@ replaceInFile() {
 
 replaceInFile "package-lock.json" "s/service-template/${name}/g" "Changed project name"
 replaceInFile "package.json" "s/service-template/${name}/g" "Changed project name"
+replaceInFile "infra/index.ts" "s/service-template/${name}/g" "Changed project name"
 replaceInFile "package.json" "s/A template for micro-services deployed to AWS with Pulumi/${desc}/g" "Changed project description"
 replaceInFile "Pulumi.yaml" "s/service-template/${name}/g" "Changed project name"
 replaceInFile "Pulumi.yaml" "s/A template for micro-services deployed to AWS with Pulumi/${desc}/g" "Changed project description"
