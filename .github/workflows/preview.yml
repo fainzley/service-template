@@ -8,8 +8,8 @@ jobs:
     name: Deploy to beta
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version-file: package.json
       - name: Configure AWS Credentials
@@ -19,7 +19,7 @@ jobs:
           aws-region: ${{ secrets.BETA_AWS_REGION }}
           aws-secret-access-key: ${{ secrets.BETA_AWS_SECRET_ACCESS_KEY }}
       - run: npm ci
-      - uses: pulumi/actions@v3
+      - uses: pulumi/actions@v5
         with:
           command: preview
           stack-name: beta
@@ -34,8 +34,8 @@ jobs:
     needs: deploy-beta
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version-file: package.json
       - name: Configure AWS Credentials
@@ -45,7 +45,7 @@ jobs:
           aws-region: ${{ secrets.PROD_AWS_REGION }}
           aws-secret-access-key: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
       - run: npm ci
-      - uses: pulumi/actions@v3
+      - uses: pulumi/actions@v5
         with:
           command: preview
           stack-name: prod

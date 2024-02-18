@@ -8,7 +8,7 @@ This repository was created using the [fainzley service-template](https://github
 
 ## Deployment
 
-In order to deploy the stack to an AWS account, you must ensure that you have the AWS environment variables set:
+In order to deploy the stack to an AWS account (we normally develop on the fainzley dev account), you must ensure that you have the AWS environment variables set:
 
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
@@ -21,10 +21,24 @@ You can fetch these from the AWS console. Once these are set, install the NodeJS
 npm install
 ```
 
-And finally, deploy the stack with:
+Finally, deploy the stack with:
 
 ```
 pulumi up
 ```
 
-Choose `create a new stack`, create one called `fainzley/dev`, and follow the rest of the Pulumi instructions.
+If this is the first deployment of this stack, choose `create a new stack`, create one called `fainzley/dev`, and follow the rest of the Pulumi instructions.
+
+### Previewing deployments
+
+To preview a deployment before it is made, you can run:
+
+```
+pulumi preview
+```
+
+## GitHub Actions
+
+This repo has the following GitHub actions:
+- a [`preview.yml`](./.github/workflows/preview.yml) action that comments a stack diff on PRs to `main`
+- a [`deploy.yml`](./.github/workflows/deploy.yml) action that deploys the updated stack to our beta and prod AWS accounts when there is a commit to `main`
